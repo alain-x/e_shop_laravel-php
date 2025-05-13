@@ -17,6 +17,12 @@ class ProductController extends Controller
             'stock_quantity'=>'required',
             'image'=>'nullable',
         ]);
+
+        if($request->hasFile('image')){
+            $imageName = $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path('images'), $imageName);
+            $validation_data['image'] = $imageName;
+        }
         Product::create($validation_data);
             return redirect()->back()->with('message', 'Product created successfully');
     }
