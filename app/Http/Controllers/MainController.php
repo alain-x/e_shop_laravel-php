@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 class MainController extends Controller
@@ -50,7 +50,8 @@ class MainController extends Controller
     }
 
     public function home_page(){
-        return view('home_page');
+        $all_products = Product::all();
+        return view('home_page',['products'=>$all_products]);
     }
 
     public function logout()
