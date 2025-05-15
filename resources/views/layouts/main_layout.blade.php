@@ -23,12 +23,12 @@
     <div class="container">
 
     @if(session('message'))
-          <p>{{session('message')}}</p>
+          <p class="success">{{session('message')}}</p>
         @endif
         @if($errors->any())
           <ul>
             @foreach($errors->all() as $error)
-              <li>{{$error}}</li>
+              <li class="error">{{$error}}</li>
             @endforeach
           </ul>
         @endif

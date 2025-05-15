@@ -15,6 +15,17 @@
             <p><a style="margin-right:20px; text-decoration:none; color:red;" href="{{route('delete_product',$one_product->id)}}">Delete</a></p>
             </div>
             <br>
+            <form action="{{ route('sell_product', $one_product->id) }}" method="post">
+                @csrf
+                <input type="text" name="quantity" placeholder="Enter quantity" required/>
+                <button type="submit">Sell</button>
+            </form>
+            
+            <form action="{{ route('purchase', $one_product->id) }}" method="post">
+                @csrf
+                <input type="text" name="quantity" placeholder="Enter purchased quantity" required/>
+                <button type="submit">Purchase</button>
+            </form>
         </div>
 
         @endforeach

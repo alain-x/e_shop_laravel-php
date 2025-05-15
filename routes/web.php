@@ -31,4 +31,6 @@ Route::get('/delete_product/{product_id}',[ProductController::class, 'delete_pro
 
 Route::post('/update_product/{product_id}',[ProductController::class, 'update_product'])->middleware('auth')->name('update_product');
 
+Route::post('/sell_product/{product_id}',[ProductController::class, 'sell_product'])->middleware('auth')->name('sell_product');
 
+Route::post('/purchase/{product_id}',[ProductController::class,'purchase'])->middleware('auth')->name('purchase');

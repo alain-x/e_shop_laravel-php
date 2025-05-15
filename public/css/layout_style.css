@@ -147,11 +147,28 @@ input {
 }
 
 .error {
-    color: red;
+    font-family: Arial;
+    font-weight: bold;
+    padding: 10px;
+    height: 40px;
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(247, 114, 114);
+    border-radius: 5px;
+    color: rgb(23, 15, 15);
+    list-style-type: none;
 }
 
 .success {
-    color: green;
+    font-family: Arial;
+    font-weight: bold;
+    padding: 10px;
+    height: 40px;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgb(119, 202, 110);
+    color: rgb(23, 40, 23);
 }
 
 /* Responsive Navbar */

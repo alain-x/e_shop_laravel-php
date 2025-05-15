@@ -62,4 +62,33 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->back()->with('message', 'Product deleted successfully');
     }
+
+
+    public function sell_product(Request $request, $product_id){
+        $validation_data = $request->validate([
+            'quantity'=>'required',
+        ]);
+
+        $product = Product::where('id',$product_id)->first();
+        if($product->stock_quantity >= $validation_data['quantity']){
+            $product->stock_quantity -= $validation_data['quantity'];
+            $product->save();
+            return redirect()->back()->with('message', 'Product sold successfully');
+        }else{
+            return redirect()->back()->with('message', 'Not enough stock available');
+        }
+    }
+
+    public function purchase(Request $request, $product_id)
+    {
+        $validate_data = $request ->validate([
+            'quantity'=>'required'
+
+        ]);
+
+        $product = Product::where('id',$product_id)->first();
+        $product ->stock_quantity+= $validate_data['quantity'];
+        $product->save();
+        return redirect()->back()->with('message','Thank you for purchasing!');
+    }
 }
