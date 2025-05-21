@@ -22,17 +22,22 @@
             @endforeach
           </ul>
         @endif
-    <h1>Login Page</h1>
-    <form method="post" action="{{route('login_user')}}">
-        @csrf
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
-    <p>
-        Don't have an account? <a href="{{route('registration')}}">Register</a>
-    </p>
-    </div>
+        <h1>Welcome Back</h1>
+        <form action="{{ route('login_user') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+            <button type="submit">Log In</button>
+        </form>
+        <div style="text-align: center; margin-top: 1rem;">
+            <p>Don't have an account? <a href="{{ route('registration') }}" style="color: var(--primary-color); text-decoration: none;">Sign Up</a></p>
+        </div>
    
 </body>
 </html>

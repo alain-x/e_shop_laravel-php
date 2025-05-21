@@ -9,26 +9,45 @@
 <body>
     <div class="container">
         @if(session('message'))
-          <p>{{session('message')}}</p>
+        <div class="text-align: center">
+            {{session('message')}}
+        </div>
         @endif
+
         @if($errors->any())
-          <ul>
-            @foreach($errors->all() as $error)
-              <li>{{$error}}</li>
-            @endforeach
-          </ul>
+
+        <div class="text-align: center">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li style="color: red;">{{ $error }}</li>
+                @endforeach
+            </ul>
+
         @endif
-          <h1>Registration Page</h1>
-    <form method="post" action="{{route('store_user')}}">
-        @csrf
-        <input type="text" name="user_name" placeholder="User Name" required/>
-        <input type="email" name="email" placeholder="Email" required/>
-        <input type="password" name="password" placeholder="Password" required/>
-        <button type="submit">Register</button>
-    </form>
-    <p>
-        Already have an account? <a href="{{route('login')}}">Login</a>
-    </p>
+
+
+
+        <h1>Register</h1>
+        <form action="{{ route('store_user') }}" method="post">
+            @csrf
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+            <button type="submit">Log In</button>
+        </form>
+        <div style="text-align: center; margin-top: 1rem;">
+            <p>Already have an account? <a href="{{ route('login') }}" style="color: var(--primary-color); text-decoration: none;">Log In</a></p>
+        </div>
     </div>
+</body>
 </body>
 </html>
