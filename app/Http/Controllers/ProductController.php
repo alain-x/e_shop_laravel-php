@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+
 class ProductController extends Controller
 {
     public function product_form(){
@@ -63,7 +64,6 @@ class ProductController extends Controller
         return redirect()->back()->with('message', 'Product deleted successfully');
     }
 
-
     public function sell_product(Request $request, $product_id){
         $validation_data = $request->validate([
             'quantity'=>'required',
@@ -83,12 +83,22 @@ class ProductController extends Controller
     {
         $validate_data = $request ->validate([
             'quantity'=>'required'
-
         ]);
 
         $product = Product::where('id',$product_id)->first();
         $product ->stock_quantity+= $validate_data['quantity'];
         $product->save();
         return redirect()->back()->with('message','Thank you for purchasing!');
+    }
+
+    public function search_product(Request $request)
+    {
+        $search = $request->input('search');
+        
+        $products = Product::when($search, function ($query) use ($search) {
+            return $query->where('name', 'like', "%{$search}%");
+        })->get();
+
+        return view('product_fd.product_list', compact('products'));
     }
 }
